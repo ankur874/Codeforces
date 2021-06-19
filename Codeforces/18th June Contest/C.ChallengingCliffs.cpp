@@ -24,11 +24,17 @@ int main(){
         int* newArr=new int[n];
         newArr[0]=arr[minAbsI];
         newArr[n-1]=arr[minAbsI+1];
+        int k=1;
         for(int i=minAbsI+2;i<n;i++){
-            
+           newArr[k++]=arr[i];
         }
-
+        for(int i=0;i<minAbsI;i++){
+           newArr[k++]=arr[i];
+        }
+        for(int i=0;i<n;i++){
+            cout<<newArr[i]<<" ";
+        }
         cout<<'\n';
-        return 0;
     }
+    return 0;
 }
