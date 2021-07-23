@@ -22,13 +22,13 @@ int main()
         }
         sort(our, our+n, greater<int>());
         sort(llya,llya+n, greater<int>());
-        int k = n - round(n/4);
+        int k = n - floor(n/4);
         int ourS = 0;
         int llyaS = 0;
         for (int i = 0; i < k; i++)
         {
             ourS += our[i];
-            llyaS+=llyaS[i];
+            llyaS+=llya[i];
         }
         int res = 0;
         if (ourS >= llyaS)

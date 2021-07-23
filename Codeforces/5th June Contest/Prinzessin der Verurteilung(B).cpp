@@ -1,70 +1,102 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-void solve(string inp,int n){
-    //check for one
-    int count[26]{0};
-    for(int i=0;i<n;i++){
-        count[inp[i]-'a']=1;
-    }
-    for(int i=0;i<26;i++){
-        if(count[i]==0){
-            cout<<(char)('a'+i);
-            return;
-        }
-    }
-    set<string>st;
-    for(int i=0;i<n-1;i++){
-        string temp="";
-        temp+=inp[i];
-        temp+=inp[i+1];
-        st.insert(temp);
-    }
-    for(int i=0;i<26;i++){
-        for(int j=0;j<26;j++){
-            string temp="";
-            temp+='a'+i;
-            temp+='a'+j;
-            if(st.find(temp)==st.end()){
-                 cout<<temp;
-                 return;
-            }
-        }
-    }
-    set<string>stt;
-    for(int i=0;i<n-2;i++){
-        string temp="";
-        temp+=inp[i];
-        temp+=inp[i+1];
-        temp+=inp[i+2];
-        stt.insert(temp);
-    }
-    for(int i=0;i<26;i++){
-        for(int j=0;j<26;j++){
-            string temp="a";
-            temp+='a'+i;
-            temp+='a'+j;
-            if(stt.find(temp)==stt.end()){
-                 cout<<temp;
-                 return;
-            }
-        }
-    }
 
+struct Node
+{
+    int data;
+    struct Node *link;
+};
 
+struct Node *top;
 
+void push(int data)
+{
+    struct Node *temp;
+    temp = new Node();
+    if (!temp)
+    {
+        cout << "\nHeap Overflow";
+        exit(1);
+    }
+    temp->data = data;
+    temp->link = top;
+    top = temp;
 }
-int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        string inp;
-        cin>>inp;
-        solve(inp,n);
-        cout<<'\n';
 
+int isEmpty()
+{
+    return top == NULL;
+}
+
+
+
+int peek()
+{
+    if (!isEmpty())
+        return top->data;
+    else
+        exit(1);
+}
+
+void pop()
+{
+    struct Node *temp;
+    if (top == NULL)
+    {
+        cout << "\nStack Underflow" << endl;
+        exit(1);
     }
+    else
+    {
+        temp = top;
+
+        top = top->link;
+
+        temp->link = NULL;
+
+        free(temp);
+    }
+}
+
+void display()
+{
+    struct Node *temp;
+
+    if (top == NULL)
+    {
+        cout << "\nStack Underflow";
+        exit(1);
+    }
+    else
+    {
+        temp = top;
+        while (temp != NULL)
+        {
+
+            cout << temp->data << "-> ";
+
+            temp = temp->link;
+        }
+    }
+}
+
+int main()
+{
+
+    push(11);
+    push(22);
+    push(33);
+    push(44);
+
+    display();
+
+    cout << "\nTop element is "
+         << peek() << endl;
+    pop();
+    pop();
+    display();
+    cout << "\nTop element is "
+         << peek() << endl;
+
+    return 0;
 }

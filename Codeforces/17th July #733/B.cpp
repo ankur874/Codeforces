@@ -19,26 +19,7 @@ int main()
                 arr[i][j] = 0;
             }
         }
-        if (h > 1 && w == 1)
-        {
-            for (int i = 0; i < h; i += 2)
-            {
-                arr[i][0] = 1;
-            }
-        }
-        else if (h == 1 && w > 1)
-        {
-            for (int i = 0; i < w; i += 2)
-            {
-                arr[0][i] = 1;
-            }
-        }
-        else if (w == 1 && h == 1)
-        {
-            arr[0][0] = 1;
-        }
-        else
-        {
+        
             for (int i = 0; i < w; i += 2)
             {
                 arr[0][i] = 1;
@@ -70,7 +51,7 @@ int main()
             if(arr[h-2][w-1]==1&&arr[h-1][w-1]==1){
                 arr[h-1][w-1]=0;
             }
-        }
+        
         for (int i = 0; i < h; i++)
         {
             for (int j = 0; j < w; j++)
